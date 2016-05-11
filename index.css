@@ -10,6 +10,15 @@ html, body {
 	height: 85%;
 	margin: 3em 1em 3em 3em;
 	float: left;
+	text-align: center;
+}
+
+#find-images {
+	width: 20em;
+	height: 4em;
+	margin: auto;
+	background-color: #F0F0F0;
+	font-family: "Courier New", Courier, monospace;
 }
 
 #photos-column {
