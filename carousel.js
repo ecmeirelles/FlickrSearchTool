@@ -1,5 +1,6 @@
 var previousImage = '';
 var images = document.getElementsByTagName('img'); 
+var currentImage = images[1];
 
 // Center first image loaded (images[0] = left-arrow.png)
 centerImage(images[1]);
@@ -19,6 +20,8 @@ function centerImage(image) {
 	}
 	
 	changeOpacity(image);
+	
+	currentImage = image;
 }
 
 function animation() {
@@ -87,4 +90,9 @@ function keyboardArrows(e){
             changeMainImage('right');
             break;
     }   
+}
+
+window.onresize = centerImageOnResize;
+function centerImageOnResize(e) {	
+	centerImage(currentImage);
 }
