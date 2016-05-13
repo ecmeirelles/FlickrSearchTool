@@ -1,4 +1,7 @@
-var currentImage = '';
+var previousImage = '';
+var images = document.getElementsByTagName('a'); 
+
+centerImage(images[0]);
 
 function centerImage(image) {
 	var innerLeft = image.offsetLeft;
@@ -10,21 +13,24 @@ function centerImage(image) {
 	
 	document.getElementById('carousel-images').style.left = (outerLeft - innerLeft) + 'px';
 	
-	animation();
+	if(previousImage != '') {
+		animation();
+	}
+	
 	changeOpacity(image);
 }
 
 function animation() {
-	document.getElementById('carousel-images').style.WebkitTransition = 'left 1s linear';
-	document.getElementById('carousel-images').style.transition = 'left 1s linear';
+	document.getElementById('carousel-images').style.WebkitTransition = 'left 1s ease-in-out';
+	document.getElementById('carousel-images').style.transition = 'left s ease-in-out';
 }
 
-function changeOpacity(image) {
-	if(!currentImage == '') {
-		currentImage.childNodes[0].style.opacity = '0.2';
+function changeOpacity(image) {	
+	if(previousImage != '') {
+		previousImage.childNodes[0].classList.remove('active');
 	}
 	
-	image.childNodes[0].style.opacity = '1';
+	image.childNodes[0].className = 'active';
 	
-	currentImage = image;
+	previousImage = image;
 }
