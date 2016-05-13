@@ -66,27 +66,28 @@ html, body {
 	overflow: hidden;
 }
 
-.left-arrow, .right-arrow {
+#left-arrow, #right-arrow {
+	top: 45%;
 	width: 5%;
 	height: 100%;
 	position: absolute;
-	top: 45%;
+	margin: 0;
+	z-index: 10;
 }
 
-.left-arrow img, .right-arrow img {
+#left-arrow img, #right-arrow img {
 	display: none;
-	
 }
 
-.left-arrow:hover img, .right-arrow:hover img {
+#left-arrow:hover img, #right-arrow:hover img {
 	display: block;
 }
 
-.left-arrow {
+#left-arrow {
 	left: 0;
 }
 
-.right-arrow {
+#right-arrow {
 	right: 0;
 }
 
