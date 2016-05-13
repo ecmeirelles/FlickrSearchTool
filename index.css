@@ -73,6 +73,6 @@ html, body {
 }
 
 #carousel-images img {
+	opacity: 0.2;
 	border-radius: 1em;
 }
-

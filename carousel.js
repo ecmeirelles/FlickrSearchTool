@@ -1,3 +1,5 @@
+var currentImage = '';
+
 function centerImage(image) {
 	var innerLeft = image.offsetLeft;
 	
@@ -18,5 +20,11 @@ function animation() {
 }
 
 function changeOpacity(image) {
-	image.style.opacity = '1';
+	if(!currentImage == '') {
+		currentImage.childNodes[0].style.opacity = '0.2';
+	}
+	
+	image.childNodes[0].style.opacity = '1';
+	
+	currentImage = image;
 }
