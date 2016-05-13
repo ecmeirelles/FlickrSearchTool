@@ -7,4 +7,16 @@ function centerImage(image) {
 	var outerLeft = halfOuterWidth - halfImageWidth; 
 	
 	document.getElementById('carousel-images').style.left = (outerLeft - innerLeft) + 'px';
+	
+	animation();
+	changeOpacity(image);
+}
+
+function animation() {
+	document.getElementById('carousel-images').style.WebkitTransition = 'left 1s linear';
+	document.getElementById('carousel-images').style.transition = 'left 1s linear';
+}
+
+function changeOpacity(image) {
+	image.style.opacity = '1';
 }
