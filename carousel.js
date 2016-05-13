@@ -72,3 +72,19 @@ function changeMainImage(arrow_position) {
 		}
 	}
 }
+
+document.onkeydown = keyboardArrows;
+function keyboardArrows(e){    
+	e = e || window.event;
+	var key = e.which || e.keyCode;
+
+    switch(key) {
+        case 37:
+			changeMainImage('left');
+            break;
+			
+        case 39:
+            changeMainImage('right');
+            break;
+    }   
+}
