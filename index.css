@@ -66,6 +66,30 @@ html, body {
 	overflow: hidden;
 }
 
+.left-arrow, .right-arrow {
+	width: 5%;
+	height: 100%;
+	position: absolute;
+	top: 45%;
+}
+
+.left-arrow img, .right-arrow img {
+	display: none;
+	
+}
+
+.left-arrow:hover img, .right-arrow:hover img {
+	display: block;
+}
+
+.left-arrow {
+	left: 0;
+}
+
+.right-arrow {
+	right: 0;
+}
+
 #carousel-images {
 	margin-top: 0.6em;
 	position: absolute;

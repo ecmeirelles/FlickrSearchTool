@@ -23,14 +23,20 @@
 		
 		<div id="photos-column">
 			<div id="carousel">
+				<div class="left-arrow" onclick="changeMainImage('left');">
+					<img src="left-arrow.png">
+				</div>
 				<div id="carousel-images">
-					<a href="javascript:void(0);" onclick="centerImage(this);"><img src="bike.jpg" height="100" width="150"></a>
-					<a href="javascript:void(0);" onclick="centerImage(this);"><img src="city.jpg" height="100" width="150"><a>
-					<a href="javascript:void(0);" onclick="centerImage(this);"><img src="butterfly.jpg" height="100" width="150"><a>
-					<a href="javascript:void(0);" onclick="centerImage(this);"><img src="desert.jpg" height="100" width="150"><a>
-					<a href="javascript:void(0);" onclick="centerImage(this);"><img src="flowers.jpg" height="100" width="150"><a>
-					<a href="javascript:void(0);" onclick="centerImage(this);"><img src="sunset.jpg" height="100" width="150"><a>
-					<a href="javascript:void(0);" onclick="centerImage(this);"><img src="surf.jpg" height="100" width="150"><a>
+					<img src="bike.jpg" height="100" width="150" onclick="centerImage(this);">
+					<img src="city.jpg" height="100" width="150" onclick="centerImage(this);">
+					<img src="butterfly.jpg" height="100" width="150" onclick="centerImage(this);">
+					<img src="desert.jpg" height="100" width="150" onclick="centerImage(this);">
+					<img src="flowers.jpg" height="100" width="150" onclick="centerImage(this);">
+					<img src="sunset.jpg" height="100" width="150" onclick="centerImage(this);">
+					<img src="surf.jpg" height="100" width="150" onclick="centerImage(this);">
+				</div>
+				<div class="right-arrow" onclick="changeMainImage('right');">
+					<img src="right-arrow.png">
 				</div>
 			</div>
 			<div id="photos">
