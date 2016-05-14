@@ -4,10 +4,19 @@ function displayImage(image) {
 	displayArea.removeChild(displayArea.firstChild);
 	
 	var originalImage = document.createElement('img');
-	originalImage.src = image.src;
+	var oldSrc = image.src.split('_t.jpg');
+	var newSrc = oldSrc[0] + '_b.jpg';
+	originalImage.src = newSrc;
 
-	fitImageDisplayArea(originalImage);
-	displayArea.appendChild(originalImage);	
+	originalImage.onload = function() {
+		displayArea.innerHTML = '<img src=loading.gif>';
+		
+		if(originalImage.complete) {
+			displayArea.innerHTML = '';
+			fitImageDisplayArea(originalImage);
+			displayArea.appendChild(originalImage);
+		}
+	}	
 }
 
 function fitImageDisplayArea(image){

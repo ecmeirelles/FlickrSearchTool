@@ -1,13 +1,9 @@
 var previousImage = '';
-var images = document.getElementsByTagName('img'); 
+var images;
 var currentImage;
 
-// Center first image loaded (images[0] = left-arrow.png)
-images[1].onload = function() {
-	centerImage(images[1]);
-}
-
-function centerImage(image) {
+function centerImage(event) {
+	var image = event.srcElement || event.target;	
 	var innerLeft = image.offsetLeft;
 	
 	var halfOuterWidth = document.getElementById('carousel').offsetWidth / 2;
@@ -43,6 +39,7 @@ function changeOpacity(image) {
 }
 
 function changeMainImage(arrow_position) {
+	images = document.getElementsByTagName('img'); 
 	var i = currentImageIndex = 0;
 	
 	while(i < images.length) {
@@ -59,24 +56,48 @@ function changeMainImage(arrow_position) {
 	if(arrow_position == 'left') {
 		// If the previous image is not the left arrow (images[0]), the new main image is the previous of the current one
 		if(currentImageIndex-1 != 0) {
-			centerImage(images[currentImageIndex-1]);
+			clickAction(images[currentImageIndex-1]);
 		}
 		// If previous image is the left arrow, the new main image is the last one
 		else {
-			centerImage(images[images.length-2]);
+			clickAction(images[images.length-2]);
 		}
 	}
 	
 	else {
 		// If the next image is not the right arrow (images[lenght-1]), the new main image is the next of the current one
 		if(currentImageIndex+1 != images.length-1) {
-			centerImage(images[currentImageIndex+1]);
+			clickAction(images[currentImageIndex+1]);
 		}
 		// If the next image is the right arrow, the new main image is the first one
 		else {
-			centerImage(images[1]);
+			clickAction(images[1]);
 		}
 	}
+}
+
+function getCurrentImageIndex() {
+	images = document.getElementsByTagName('img'); 
+	var i = currentImageIndex = 0;
+	
+	while(i < images.length) {
+		if(images[i].className == 'active') {
+			currentImageIndex = i;
+			break;
+		}
+		
+		else {
+			i++;
+		}
+	}
+	
+	return currentImageIndex;
+}
+
+function clickAction(element) {
+	var event = document.createEvent("MouseEvents");
+	event.initEvent("click", true, true);
+	element.dispatchEvent(event);
 }
 
 document.onkeydown = keyboardArrows;
@@ -97,5 +118,17 @@ function keyboardArrows(e){
 
 window.onresize = centerImageOnResize;
 function centerImageOnResize(e) {	
-	centerImage(currentImage);
+	clickAction(currentImage);
+}
+
+var carousel = document.getElementById('carousel-images');
+function fitImageCarousel(image){
+	var aspectRatio = 100 / image.width;
+
+	image.height = 100;
+	image.width = 100 / aspectRatio;
+		
+	if(image.width > carousel.offsetWidth || aspectRatio == 0) {
+		image.width = 150;
+	}
 }
