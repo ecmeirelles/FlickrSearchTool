@@ -16,13 +16,26 @@ function findImages() {
 	request += "&api_key=f2d3e882afae6220e175c126c6b971ed";
 	
 	var tagsString = '';
+	var emptyTag = 0;
 	for(var i = 0; i < tags.length; i++) {
 		if(i+1 < tags.length) {
-			tagsString += tags[i].value + ',';
+			if(tags[i+1].value != '') {
+				tagsString += tags[i].value + ',';
+			}
+
+			else {
+				emptyTag++;
+			}
 		}
 		
 		else {
-			tagsString += tags[i].value;
+			if(tags[i].value != '') {
+				tagsString += tags[i].value;
+			}
+
+			else {
+				emptyTag++;
+			}
 		}
 	}
 	
@@ -30,10 +43,15 @@ function findImages() {
 	request += "&tag_mode=all";
 	request += "&format=json";
 	
-	sendRequest(request);
+	if(emptyTag == 0) {
+		sendRequest(request);
+		document.getElementById('find-images').innerHTML = '<img src=loading.gif>';
+		document.getElementById('photos').innerHTML = '<img src=loading.gif>';
+	}
 	
-	document.getElementById('find-images').innerHTML = '<img src=loading.gif>';
-	document.getElementById('photos').innerHTML = '<img src=loading.gif>';
+	else {
+		document.getElementById('photos').innerHTML = 'Empty Tag Detected';
+	}
 }
 
 function sendRequest(url) {
