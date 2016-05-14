@@ -116,6 +116,7 @@ html, body {
 	vertical-align: middle;
 	text-align: center;
 	position: relative;
+	font-family: "Courier New", Courier, monospace;
 }
 
 #photos img {

@@ -8,9 +8,9 @@ function displayImage(image) {
 	var newSrc = oldSrc[0] + '_b.jpg';
 	originalImage.src = newSrc;
 
+	displayArea.innerHTML = '<img src=loading.gif>';
+	
 	originalImage.onload = function() {
-		displayArea.innerHTML = '<img src=loading.gif>';
-		
 		if(originalImage.complete) {
 			displayArea.innerHTML = '';
 			fitImageDisplayArea(originalImage);

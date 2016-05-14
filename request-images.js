@@ -1,6 +1,5 @@
 var request = '';
 var allImages = '';
-var ids = [];
 
 function findImages() {
 	var carousel_images = document.getElementById("carousel-images");
@@ -46,35 +45,41 @@ function sendRequest(url) {
 }
 
 function jsonFlickrApi(images) {
-	document.getElementById('find-images').innerHTML = 'Find Images';
-	
 	var carousel = document.getElementById('carousel-images');
 	var url = '';
 	var numberOfImages = images.photos.photo.length;
 	
-	for (var i = 0; i < numberOfImages; i++ ) {
-		url = "http://farm" + images.photos.photo[i].farm ;
-		url += ".static.flickr.com/" ;
-		url += images.photos.photo[i].server + "/";
-		url += images.photos.photo[i].id + "_";
-		url += images.photos.photo[i].secret;
-		url += "_t.jpg"
-		
-		var flickrImage = document.createElement('img');
-		flickrImage.src = url;
-		flickrImage.onclick = centerImage;
-		
-		carousel.appendChild(flickrImage);
-		fitImageCarousel(flickrImage);
-		
-		flickrImage.onload = function() {
-			numberOfImages--;
+	if(numberOfImages == 0) {
+		document.getElementById('find-images').innerHTML = 'Find Images';
+		document.getElementById('photos').innerHTML = 'No Results Found';
+	}
+	
+	else {
+		for (var i = 0; i < numberOfImages; i++ ) {
+			url = "http://farm" + images.photos.photo[i].farm ;
+			url += ".static.flickr.com/" ;
+			url += images.photos.photo[i].server + "/";
+			url += images.photos.photo[i].id + "_";
+			url += images.photos.photo[i].secret;
+			url += "_t.jpg"
 			
-			if(numberOfImages <= 0) {
-				allImages = document.getElementsByTagName('img');
-				clickAction(allImages[1]);
+			var flickrImage = document.createElement('img');
+			flickrImage.src = url;
+			flickrImage.onclick = centerImage;
+			
+			carousel.appendChild(flickrImage);
+			fitImageCarousel(flickrImage);
+			
+			flickrImage.onload = function() {
+				numberOfImages--;
 				
-				carousel.style.display = 'block';
+				if(numberOfImages <= 0) {
+					document.getElementById('find-images').innerHTML = 'Find Images';
+					allImages = document.getElementsByTagName('img');
+					clickAction(allImages[1]);
+					
+					carousel.style.display = 'block';
+				}
 			}
 		}
 	}
