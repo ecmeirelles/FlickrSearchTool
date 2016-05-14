@@ -1,9 +1,11 @@
 var previousImage = '';
 var images = document.getElementsByTagName('img'); 
-var currentImage = images[1];
+var currentImage;
 
 // Center first image loaded (images[0] = left-arrow.png)
-centerImage(images[1]);
+images[1].onload = function() {
+	centerImage(images[1]);
+}
 
 function centerImage(image) {
 	var innerLeft = image.offsetLeft;
@@ -20,6 +22,7 @@ function centerImage(image) {
 	}
 	
 	changeOpacity(image);
+	displayImage(image);
 	
 	currentImage = image;
 }
