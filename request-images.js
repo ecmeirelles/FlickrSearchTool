@@ -67,8 +67,8 @@ function jsonFlickrApi(images) {
 			flickrImage.src = url;
 			flickrImage.onclick = centerImage;
 			
-			carousel.appendChild(flickrImage);
 			fitImageCarousel(flickrImage);
+			carousel.appendChild(flickrImage);
 			
 			flickrImage.onload = function() {
 				numberOfImages--;

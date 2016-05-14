@@ -18,8 +18,11 @@ function centerImage(event) {
 	}
 	
 	changeOpacity(image);
-	displayImage(image);
 	
+	setTimeout(function() {
+		displayImage(image);
+	}, 1000);
+
 	currentImage = image;
 }
 
@@ -40,9 +43,9 @@ function changeOpacity(image) {
 
 function changeMainImage(arrow_position) {
 	images = document.getElementsByTagName('img'); 
-	var i = currentImageIndex = 0;
+	var i = currentImageIndex = 1;
 	
-	while(i < images.length) {
+	while(i < images.length - 1) {
 		if(images[i].className == 'active') {
 			currentImageIndex = i;
 			break;
@@ -60,13 +63,13 @@ function changeMainImage(arrow_position) {
 		}
 		// If previous image is the left arrow, the new main image is the last one
 		else {
-			clickAction(images[images.length-2]);
+			clickAction(images[images.length-3]);
 		}
 	}
 	
 	else {
 		// If the next image is not the right arrow (images[lenght-1]), the new main image is the next of the current one
-		if(currentImageIndex+1 != images.length-1) {
+		if(currentImageIndex+1 != images.length-2) {
 			clickAction(images[currentImageIndex+1]);
 		}
 		// If the next image is the right arrow, the new main image is the first one
@@ -108,7 +111,7 @@ function fitImageCarousel(image){
 
 	var aspectRatio = image.height / image.width;
 
-	if(image.width >= 150 && aspectRatio <= 1){
+	if(image.width >= image.height){
 		image.width = 150;
 		image.height = 100;
 	} 
