@@ -1,5 +1,6 @@
 var request = '';
 var allImages = '';
+var uri = '';
 
 function findImages() {
 	var carousel_images = document.getElementById("carousel-images");
@@ -11,9 +12,9 @@ function findImages() {
 	
 	var tags = document.getElementsByTagName('input');
 	
-	request = "https://www.flickr.com/services/rest/?";
-	request += "method=flickr.photos.search";
-	request += "&api_key=f2d3e882afae6220e175c126c6b971ed";
+	uri = "https://www.flickr.com/services/rest/?";
+	uri += "method=flickr.photos.search";
+	uri += "&api_key=f2d3e882afae6220e175c126c6b971ed";
 	
 	var tagsString = '';
 	var emptyTag = 0;
@@ -39,12 +40,14 @@ function findImages() {
 		}
 	}
 	
-	request += "&tags=" + tagsString;
-	request += "&tag_mode=all";
-	request += "&format=json";
+	uri += "&tags=" + tagsString;
+	uri += "&tag_mode=all";
+	uri += "&format=json";
 	
 	if(emptyTag == 0) {
+		request = encodeURI(uri);
 		sendRequest(request);
+		
 		document.getElementById('find-images').innerHTML = '<img src=loading.gif>';
 		document.getElementById('photos').innerHTML = '<img src=loading.gif>';
 	}
