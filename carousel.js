@@ -76,24 +76,6 @@ function changeMainImage(arrow_position) {
 	}
 }
 
-function getCurrentImageIndex() {
-	images = document.getElementsByTagName('img'); 
-	var i = currentImageIndex = 0;
-	
-	while(i < images.length) {
-		if(images[i].className == 'active') {
-			currentImageIndex = i;
-			break;
-		}
-		
-		else {
-			i++;
-		}
-	}
-	
-	return currentImageIndex;
-}
-
 function clickAction(element) {
 	var event = document.createEvent("MouseEvents");
 	event.initEvent("click", true, true);
@@ -123,12 +105,16 @@ function centerImageOnResize(e) {
 
 var carousel = document.getElementById('carousel-images');
 function fitImageCarousel(image){
-	var aspectRatio = 100 / image.width;
 
-	image.height = 100;
-	image.width = 100 / aspectRatio;
-		
-	if(image.width > carousel.offsetWidth || aspectRatio == 0) {
+	var aspectRatio = image.height / image.width;
+
+	if(image.width >= 150 && aspectRatio <= 1){
 		image.width = 150;
+		image.height = 100;
+	} 
+	
+	else {
+		image.height = 100;
+		image.width = image.height / aspectRatio;
 	}
 }
